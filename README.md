@@ -1,7 +1,7 @@
 # SEL0433_Projeto2_checkpointFINAL
 Alexsandra Pavani Xavier NUSP 14681372   
 
-/ Antonio Rosa Galindo de Andrade NUSP 15440868
+Antonio Rosa Galindo de Andrade NUSP 15440868
 
 # Introducao
   O projeto teve como objetivo desenvolver um firmware em C para o microcontrolador PIC18F4550, capaz de realizar contagem regressiva com duas durações distintas, leitura de temperatura via ADC e exibição das informações em um display LCD. A simulação foi realizada no Simulide e o código desenvolvido no MikroC.
