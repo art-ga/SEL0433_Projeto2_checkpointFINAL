@@ -97,7 +97,6 @@ Isolar o teste do ADC com um código mínimo que apenas leia o ADC e exiba o val
 Nao se percebeu o detalhe sobre os pinos A/D da PIC elucidados no final do documento do projeto. O erro foi dos alunos que nao perceberam  que haveria mais para se ler depois de todo o projeto, mas segue que a ignorancia desse detalhe pode(provavelmente) ter sido crucial no projeto nao simular corretamente no SIMULIDE.
 
 "
-
 Com relação às tensões de referência externas para o conversor A/D do microcontrolador
 PIC18F4550, seguem algumas considerações importantes:
 ● Ao utilizar a biblioteca ADC no software MikroC PRO For PIC, ocorre o seguinte
@@ -118,5 +117,4 @@ configurado em linha de código anterior a inicialização da biblioteca.
 ● Para testar, durante a simulação no SimulIDE, basta clicar com o botão direito do
 mouse sobre o microcontrolador e escolher a opção “Open MCU Monitor” e escolher
 o registrador ADCON1 para verificar se a configuração dos bits está correta.
-
 "
