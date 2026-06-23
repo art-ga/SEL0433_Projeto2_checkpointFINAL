@@ -1,2 +1,11 @@
 # SEL0433_Projeto2_checkpointFINAL
-// Alexsandra Pavani Xavier NUSP 14681372 Antonio Rosa Galindo de Andrade NUSP 15440868
+Alexsandra Pavani Xavier NUSP 14681372   
+/ Antonio Rosa Galindo de Andrade NUSP 15440868
+
+# Introducao
+  Este projeto consiste no desenvolvimento de um sistema embarcado de monitoramento de temperatura e temporização utilizando um microcontrolador da família PIC18 (programado em C através do compilador MikroC) e um display LCD para a interface com o usuário.O objetivo principal é permitir que o usuário selecione um modo de operação (tempo longo ou curto), inicie uma contagem regressiva e, durante esse tempo, o sistema monitore continuamente a temperatura de um sensor (como o LM35), acionando um alerta visual (LED) caso a temperatura ultrapasse um limite crítico 50C
+
+# Abordagem
+   As seguintes estratégias de engenharia de firmware: Arquitetura Baseada em Interrupções: Em vez de travar o processador esperando o pressionamento de botões, foram utilizadas interrupções externas (INT0 e INT1). Isso garante que o sistema detecte comandos do usuário instantaneamente.Máquina de Estados Finita (FSM): O comportamento do sistema é controlado por estados bem definidos (ESTADO_PARADO, ESTADO_LONGA, ESTADO_CURTA). Isso impede que o usuário altere o modo ou reinicie a contagem de forma errática enquanto o sistema já está executando uma tarefa. 
+   A abordagem utilizou o Timer0 (configurado para gerar sub-ticks de 200ms) para o modo longo e o Timer1 (gerando sub-ticks de 250ms) para o modo curto. A cada acúmulo de ticks necessário para formar 1 segundo, o tempo restante é decrementado.Otimização de Display e Flags: O código adota o uso de flags (variáveis de sinalização). Os cálculos pesados e as atualizações do LCD não são feitos dentro da interrupção (o que travaria o chip); a interrupção apenas levanta uma "bandeira" (flag) e o laço principal (while(1)) trata de atualizar a tela de forma assíncrona. 
+   Leitura Analógica Otimizada (ADC com Referência Externa): Para ler a temperatura, o projeto utiliza o conversor analógico-digital de 10 bits configurado com uma tensão de referência externa Vref= 1V. Como o sensor LM35 varia 10mV por 1C, essa escala permite medir de 0C a 100C com máxima resolução e precisão matemática direta, trabalhando com variáveis inteiras em "décimos de grau" para evitar o uso de ponto flutuante (float), que consome muita memória do PIC.
