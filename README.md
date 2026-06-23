@@ -69,6 +69,10 @@ O circuito foi montado no Simulide com os seguintes componentes: PIC18F4550, dis
 
 A contagem regressiva e os botões funcionaram corretamente em simulação. A parte do ADC e exibição de temperatura apresentou dificuldades descritas na conclusão.
 
+<img width="879" height="606" alt="{1CB3C630-06A8-4DE1-BAB5-2D18A30B0A1C}" src="https://github.com/user-attachments/assets/294aa7cb-959e-4823-905a-1ae48f38e90d" />
+
+<img width="873" height="616" alt="{D253D456-ED7B-4772-BABE-F840900FCEF5}" src="https://github.com/user-attachments/assets/b1bc4c11-c8a5-498c-8575-6ca8974b8f47" />
+
 
 # 3. Conclusão
 
