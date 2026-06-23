@@ -92,3 +92,31 @@ Para corrigir e melhorar o projeto, recomenda-se:
 Testar na placa física EasyPIC v7, onde o hardware real do PIC18F4550 responde confiavelmente à configuração de Vref externo e ADC, eliminando limitações do simulador.
 Verificar o processo de compilação e carregamento do hex no MikroC, garantindo que o arquivo gerado corresponde ao código mais recente antes de carregar no Simulide.
 Isolar o teste do ADC com um código mínimo que apenas leia o ADC e exiba o valor bruto no LCD, sem timers ou interrupções, para confirmar o funcionamento do módulo isoladamente antes de integrar ao projeto completo.
+
+## Nota:
+Nao se percebeu o detalhe sobre os pinos A/D da PIC elucidados no final do documento do projeto. O erro foi dos alunos que nao perceberam  que haveria mais para se ler depois de todo o projeto, mas segue que a ignorancia desse detalhe pode(provavelmente) ter sido crucial no projeto nao simular corretamente no SIMULIDE.
+
+"
+
+Com relação às tensões de referência externas para o conversor A/D do microcontrolador
+PIC18F4550, seguem algumas considerações importantes:
+● Ao utilizar a biblioteca ADC no software MikroC PRO For PIC, ocorre o seguinte
+erro (do próprio compilador): a função ADC_Init coloca os bits 4 e 5 do registrador
+ADCON1 em 0 (por padrão). No entanto, estes dois bits devem estar configurados de
+forma específica para permitir ajustar Vref do conversor A/D como sendo a
+alimentação externa conectada aos pinos A2 e A3 do PIC. Essa configuração estava
+causando erros ao testar o circuito no SimulIDE, pois os bits 4 e 5 sempre estavam em
+0 (neste caso, o microcontrolador utiliza as próprias tensões de alimentação VDD e
+VSS como referência Vref do A/D algo que não queremos no caso deste projeto). Da
+mesma forma, a função ADC_Read por vezes pode não funcionar corretamente para
+tensões de referência externas. Se for o caso, deve-se usar a função
+ADC_Get_Sample.
+● De qualquer forma, para resolver o problema, o módulo ADC deve ser inicializado
+primeiro e, somente em linhas posteriores, definir a configuração do registrador
+ADCON1, pois notamos que o problema persiste se ADCON1 já tiver sido
+configurado em linha de código anterior a inicialização da biblioteca.
+● Para testar, durante a simulação no SimulIDE, basta clicar com o botão direito do
+mouse sobre o microcontrolador e escolher a opção “Open MCU Monitor” e escolher
+o registrador ADCON1 para verificar se a configuração dos bits está correta.
+
+"
